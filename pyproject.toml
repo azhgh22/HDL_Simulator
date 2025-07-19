@@ -1,0 +1,13 @@
+[tool.mypy]
+ignore_missing_imports = true
+files = ["./"]
+strict = true
+
+[tool.ruff]
+lint.select = ["E", "F", "I"]
+lint.ignore = []
+lint.fixable = ["A", "B", "C", "D", "E", "F", "I"]
+lint.unfixable = []
+
+[tool.ruff.lint.mccabe]
+max-complexity = 10
