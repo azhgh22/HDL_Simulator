@@ -28,3 +28,9 @@ class Chip:
             ans[out_name] = variable_bank[out_name]
 
         return ans
+
+    def get_inputs(self) -> list[str]:
+        return self.ins
+
+    def get_outputs(self) -> list[str]:
+        return self.outs

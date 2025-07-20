@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from chips.builtins.and_chip import AndChip
-from chips.builtins.not_chip import NotChip
-from chips.builtins.or_chip import OrChip
-from chips.chip import Chip
-from chips.chip_part import ChipPart
+from src.chips.builtins.and_chip import AndChip
+from src.chips.builtins.not_chip import NotChip
+from src.chips.builtins.or_chip import OrChip
+from src.chips.chip import Chip
 from src.chips.chip_loader import ChipLoader
+from src.chips.chip_part import ChipPart
 from src.chips.chipI import ChipI
 
 
