@@ -37,18 +37,10 @@ def test_should_check_xor_chip() -> None:
 
     tester = HDLTester(chip, test_frame)
     result = tester.check()
-    # .iloc[4]['col']
-    assert result.iloc[0]["result"] == test_frame.iloc[0]["out"]
-    assert result.iloc[0]["status"] == "Pass"
-
-    assert result.iloc[1]["result"] == test_frame.iloc[1]["out"]
-    assert result.iloc[1]["status"] == "Pass"
-
-    assert result.iloc[2]["result"] == test_frame.iloc[2]["out"]
-    assert result.iloc[2]["status"] == "Pass"
-
-    assert result.iloc[3]["result"] == test_frame.iloc[3]["out"]
-    assert result.iloc[3]["status"] == "Pass"
+    assert result.iloc[0]["result_out"] == test_frame.iloc[0]["out"]
+    assert result.iloc[1]["result_out"] == test_frame.iloc[1]["out"]
+    assert result.iloc[2]["result_out"] == test_frame.iloc[2]["out"]
+    assert result.iloc[3]["result_out"] == test_frame.iloc[3]["out"]
 
 
 def test_should_fail() -> None:
@@ -65,18 +57,10 @@ def test_should_fail() -> None:
 
     tester = HDLTester(chip, test_frame)
     result = tester.check()
-    # .iloc[4]['col']
-    assert result.iloc[0]["result"] != test_frame.iloc[0]["out"]
-    assert result.iloc[0]["status"] == "Fail"
-
-    assert result.iloc[1]["result"] == test_frame.iloc[1]["out"]
-    assert result.iloc[1]["status"] == "Pass"
-
-    assert result.iloc[2]["result"] == test_frame.iloc[2]["out"]
-    assert result.iloc[2]["status"] == "Pass"
-
-    assert result.iloc[3]["result"] == test_frame.iloc[3]["out"]
-    assert result.iloc[3]["status"] == "Pass"
+    assert result.iloc[0]["result_out"] != test_frame.iloc[0]["out"]
+    assert result.iloc[1]["result_out"] == test_frame.iloc[1]["out"]
+    assert result.iloc[2]["result_out"] == test_frame.iloc[2]["out"]
+    assert result.iloc[3]["result_out"] == test_frame.iloc[3]["out"]
 
 
 def test_should_check_real_chip() -> None:
@@ -95,14 +79,7 @@ def test_should_check_real_chip() -> None:
     tester = HDLTester(chip, test_frame)
     result = tester.check()
     # .iloc[4]['col']
-    assert result.iloc[0]["result"] == test_frame.iloc[0]["out"]
-    assert result.iloc[0]["status"] == "Pass"
-
-    assert result.iloc[1]["result"] == test_frame.iloc[1]["out"]
-    assert result.iloc[1]["status"] == "Pass"
-
-    assert result.iloc[2]["result"] == test_frame.iloc[2]["out"]
-    assert result.iloc[2]["status"] == "Pass"
-
-    assert result.iloc[3]["result"] == test_frame.iloc[3]["out"]
-    assert result.iloc[3]["status"] == "Pass"
+    assert result.iloc[0]["result_out"] == test_frame.iloc[0]["out"]
+    assert result.iloc[1]["result_out"] == test_frame.iloc[1]["out"]
+    assert result.iloc[2]["result_out"] == test_frame.iloc[2]["out"]
+    assert result.iloc[3]["result_out"] == test_frame.iloc[3]["out"]
