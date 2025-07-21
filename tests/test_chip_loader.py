@@ -10,7 +10,7 @@ class MockReader:
             "outputs": ["out"],
             "parts": [
                 ChipPart("And", {"a": "a", "b": "notb", "out": "out"}, {}, None),
-                ChipPart("Not", {"a": "b", "out": "notb"}, {}, None),
+                ChipPart("Not", {"in": "b", "out": "notb"}, {}, None),
             ],
         }
 

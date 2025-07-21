@@ -15,8 +15,8 @@ class MockLoader:
             ["a", "b"],
             ["out"],
             [
-                ChipPart("Not", {"a": "a"}, {"out": "nota"}, NotChip()),
-                ChipPart("Not", {"a": "b"}, {"out": "notb"}, NotChip()),
+                ChipPart("Not", {"in": "a"}, {"out": "nota"}, NotChip()),
+                ChipPart("Not", {"in": "b"}, {"out": "notb"}, NotChip()),
                 ChipPart("And", {"a": "a", "b": "notb"}, {"out": "w1"}, AndChip()),
                 ChipPart("And", {"a": "nota", "b": "b"}, {"out": "w2"}, AndChip()),
                 ChipPart("Or", {"a": "w1", "b": "w2"}, {"out": "out"}, OrChip()),
@@ -38,7 +38,7 @@ def test_should_create_or_chip() -> None:
 
 def test_should_create_not_chip() -> None:
     chip = ChipLoader().load("Not")
-    assert not chip.run({"a": True})["out"]
+    assert not chip.run({"in": True})["out"]
 
 
 def test_should_create_nand_chip() -> None:
