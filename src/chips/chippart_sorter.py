@@ -7,8 +7,6 @@ class ChipPartSorter:
     def sort(self, parts: list[ChipPart]) -> list[ChipPart]:
         in_count = [0] * len(parts)
         graph = self.create_graph(parts, in_count)
-        print(graph)
-        print(in_count)
         queue = deque([i for i in range(len(in_count)) if in_count[i] == 0])
         result = []
 

@@ -9,7 +9,7 @@
 CHIP Xor {
     IN a, b;
     OUT out;
-
+    
     PARTS:
     //// Replace this comment with your code.
     Not(in=a, out=notA);

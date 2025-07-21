@@ -3,23 +3,9 @@ from src.chips.builtins.nand_chip import NandChip
 from src.chips.builtins.not_chip import NotChip
 from src.chips.builtins.or_chip import OrChip
 from src.chips.chip import Chip
-from src.chips.chip_part import ChipPart
 from src.chips.chipI import ChipI
 from src.chips.chippart_sorter import ChipPartSorter
-
-
-class HDLReader:
-    def read(self, name: str) -> None:
-        pass
-
-    def get_inputs(self) -> list[str]:
-        pass
-
-    def get_outputs(self) -> list[str]:
-        pass
-
-    def get_parts(self) -> list[ChipPart]:
-        pass
+from src.parsers.hdl_reader import HDLReader
 
 
 class ChipLoader:
