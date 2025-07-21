@@ -9,4 +9,4 @@ class ChipI(Protocol):
         pass
 
     def get_outputs(self) -> list[str]:
-        return self.outs
+        pass

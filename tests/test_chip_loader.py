@@ -9,8 +9,8 @@ class MockReader:
             "inputs": ["a", "b"],
             "outputs": ["out"],
             "parts": [
-                ChipPart("Not", {"a": "b", "out": "notb"}, {}, None),
                 ChipPart("And", {"a": "a", "b": "notb", "out": "out"}, {}, None),
+                ChipPart("Not", {"a": "b", "out": "notb"}, {}, None),
             ],
         }
 
@@ -18,9 +18,9 @@ class MockReader:
             "inputs": ["a", "b"],
             "outputs": ["out"],
             "parts": [
+                ChipPart("Or", {"a": "w1", "b": "w2", "out": "out"}, {}, None),
                 ChipPart("X", {"a": "a", "b": "b", "out": "w1"}, {}, None),
                 ChipPart("X", {"a": "b", "b": "a", "out": "w2"}, {}, None),
-                ChipPart("Or", {"a": "w1", "b": "w2", "out": "out"}, {}, None),
             ],
         }
         self.name = ""

@@ -6,4 +6,4 @@ class AndChip(Chip):
         super().__init__(["a", "b"], ["out"], [])
 
     def run(self, inputs: dict[str, bool]) -> dict[str, bool]:
-        return {"out": inputs["a"] and inputs["b"]}
+        return {"out": inputs["a"] & inputs["b"]}

@@ -1,3 +1,5 @@
 mypy
 ruff
 pytest
+pandas
+numpy
