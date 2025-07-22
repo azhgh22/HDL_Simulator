@@ -49,19 +49,32 @@ class HDLParser:
         parts = []
 
         in_parts_section = False
+        i = 1
+        while i < len(lines):
+            line = lines[i]
 
-        for line in lines[1:]:
             if line.startswith("IN "):
-                inputs = [x.strip() for x in line[len("IN ") :].rstrip(";").split(",")]
+                in_block = line[len("IN ") :]
+                while not in_block.endswith(";"):
+                    i += 1
+                    in_block += " " + lines[i]
+                inputs = [x.strip() for x in in_block.rstrip(";").split(",")]
+
             elif line.startswith("OUT "):
-                outputs = [
-                    x.strip() for x in line[len("OUT ") :].rstrip(";").split(",")
-                ]
+                out_block = line[len("OUT ") :]
+                while not out_block.endswith(";"):
+                    i += 1
+                    out_block += " " + lines[i]
+                outputs = [x.strip() for x in out_block.rstrip(";").split(",")]
+
             elif line.startswith("PARTS:"):
                 in_parts_section = True
+
             elif in_parts_section:
                 if line == "}":
                     break
                 parts.append(self.__parse_part_line(line))
+
+            i += 1
 
         return ChipDef(name=chip_name, inputs=inputs, outputs=outputs, parts=parts)
