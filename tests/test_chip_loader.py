@@ -1,41 +1,50 @@
+from src.chips.chip import Chip
 from src.chips.chip_loader import ChipLoader
 from src.chips.chip_part import ChipPart
 
 
 class MockReader:
     def __init__(self) -> None:
-        self.d = {}
-        self.d["X"] = {
-            "inputs": ["a", "b"],
-            "outputs": ["out"],
-            "parts": [
+        self.X = Chip(
+            ["a", "b"],
+            ["out"],
+            [
                 ChipPart("And", {"a": "a", "b": "notb", "out": "out"}, {}, None),
                 ChipPart("Not", {"in": "b", "out": "notb"}, {}, None),
             ],
-        }
+        )
 
-        self.d["Xor"] = {
-            "inputs": ["a", "b"],
-            "outputs": ["out"],
-            "parts": [
+        self.Xor = Chip(
+            ["a", "b"],
+            ["out"],
+            [
                 ChipPart("Or", {"a": "w1", "b": "w2", "out": "out"}, {}, None),
                 ChipPart("X", {"a": "a", "b": "b", "out": "w1"}, {}, None),
                 ChipPart("X", {"a": "b", "b": "a", "out": "w2"}, {}, None),
             ],
-        }
+        )
         self.name = ""
 
     def read(self, name: str) -> None:
         self.name = name
 
     def get_inputs(self) -> list[str]:
-        return self.d[self.name]["inputs"]
+        if self.name == "X":
+            return self.X.ins
+        else:
+            return self.Xor.ins
 
     def get_outputs(self) -> list[str]:
-        return self.d[self.name]["outputs"]
+        if self.name == "X":
+            return self.X.outs
+        else:
+            return self.Xor.outs
 
     def get_parts(self) -> list[ChipPart]:
-        return self.d[self.name]["parts"]
+        if self.name == "X":
+            return self.X.parts
+        else:
+            return self.Xor.parts
 
 
 # CHIP X {
@@ -59,7 +68,7 @@ class MockReader:
 # }
 
 
-def test_should_create_deep_ship():
+def test_should_create_deep_chip() -> None:
     loader = ChipLoader(MockReader())
     chip = loader.load("Xor")
     assert chip.run({"a": True, "b": False})["out"]

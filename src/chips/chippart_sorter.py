@@ -6,7 +6,7 @@ from src.chips.chip_part import ChipPart
 class ChipPartSorter:
     def sort(self, parts: list[ChipPart]) -> list[ChipPart]:
         in_count = [0] * len(parts)
-        graph = self.create_graph(parts, in_count)
+        graph = self.__create_graph(parts, in_count)
         queue = deque([i for i in range(len(in_count)) if in_count[i] == 0])
         result = []
 
@@ -22,7 +22,7 @@ class ChipPartSorter:
         return result
         # return []
 
-    def create_graph(
+    def __create_graph(
         self, parts: list[ChipPart], in_count: list[int]
     ) -> list[list[int]]:
         ans = []
@@ -33,17 +33,17 @@ class ChipPartSorter:
                 if i == j:
                     continue
 
-                outs = parts[i].out_dict.values()
+                outs = list(parts[i].out_dict.values())
                 # print(outs)
-                ins = parts[j].input_dict.values()
+                ins = list(parts[j].input_dict.values())
                 # print(ins)
 
-                if self.has_intersection(outs, ins):
+                if self.__has_intersection(outs, ins):
                     in_count[j] = in_count[j] + 1
                     neigs.append(j)
 
             ans.append(neigs)
         return ans
 
-    def has_intersection(self, list1, list2):
+    def __has_intersection(self, list1: list[str], list2: list[str]) -> bool:
         return bool(set(list1) & set(list2))

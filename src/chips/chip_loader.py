@@ -5,11 +5,17 @@ from src.chips.builtins.or_chip import OrChip
 from src.chips.chip import Chip
 from src.chips.chipI import ChipI
 from src.chips.chippart_sorter import ChipPartSorter
+from src.chips.chippart_sorterI import ChipPartSorterI
 from src.parsers.hdl_reader import HDLReader
+from src.parsers.hdl_readerI import HDLReaderI
 
 
 class ChipLoader:
-    def __init__(self, reader=HDLReader(), sorter=ChipPartSorter()) -> None:
+    def __init__(
+        self,
+        reader: HDLReaderI = HDLReader(),
+        sorter: ChipPartSorterI = ChipPartSorter(),
+    ) -> None:
         self.chip_dict: dict[str, ChipI] = {
             "And": AndChip(),
             "Or": OrChip(),

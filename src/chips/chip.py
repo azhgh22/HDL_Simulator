@@ -6,7 +6,6 @@ class Chip:
         self.ins = ins
         self.outs = outs
         self.parts = parts  # {'a' = a,b=b}, {out=out} chip
-        self.part_list = []  # topologically sorted list[Chip]
 
     def run(self, inputs: dict[str, bool]) -> dict[str, bool]:
         variable_bank = {}
@@ -15,13 +14,15 @@ class Chip:
 
         for part in self.parts:
             part_input = {}
-            for key, value in part.input_dict.items():
-                part_input[key] = variable_bank[value]
+            for key1, value1 in part.input_dict.items():
+                part_input[key1] = variable_bank[value1]
 
+            if part.chip is None:
+                continue
             result = part.chip.run(part_input)
             # update variable bank
-            for key, value in part.out_dict.items():
-                variable_bank[value] = result[key]
+            for key2, value2 in part.out_dict.items():
+                variable_bank[value2] = result[key2]
 
         ans = {}
         for out_name in self.outs:

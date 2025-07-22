@@ -1,5 +1,5 @@
 import re
-from typing import Dict
+from typing import Any, Dict
 
 from src.parsers.chip_def import ChipDef
 
@@ -18,7 +18,7 @@ class HDLParser:
         # Return cleaned and non-empty lines
         return [line.strip() for line in code.splitlines() if line.strip()]
 
-    def __parse_part_line(self, line: str) -> Dict:
+    def __parse_part_line(self, line: str) -> Dict[Any, Any]:
         line = line.rstrip(";")
 
         chip_type, rest = line.split("(", 1)

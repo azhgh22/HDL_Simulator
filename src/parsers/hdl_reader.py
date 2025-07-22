@@ -8,9 +8,9 @@ class HDLReader:
     def __init__(self, dir_name: str = "", parser: HDLParser = HDLParser()) -> None:
         self.abs_path = dir_name
         self.parser = parser
-        self.inputs = []
-        self.outputs = []
-        self.parts = []
+        self.inputs: list[str] = []
+        self.outputs: list[str] = []
+        self.parts: list[ChipPart] = []
 
     def read(self, name: str) -> None:
         file_path = os.path.join(self.abs_path, name + ".hdl")

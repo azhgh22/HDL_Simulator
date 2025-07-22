@@ -13,7 +13,7 @@ class CLI:
         hdl_file, test_file = self.read_input()
         hdl_path = Path(hdl_file)
 
-        hdl_reader = HDLReader(dir_name=hdl_path.parent)
+        hdl_reader = HDLReader(dir_name=str(hdl_path.parent))
         loader = ChipLoader(hdl_reader)
         chip = loader.load(hdl_path.stem)
         chip_tester = HDLTester(chip, self.read_csv(test_file))
